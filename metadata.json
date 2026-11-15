@@ -1,0 +1,6 @@
+{
+  "name": "Study Planner",
+  "description": "Smart Study Routine App (স্মার্ট পড়াশোনা) with daily/weekly/monthly routines, subject & chapter tracking, Pomodoro study timer, calendar, exam countdowns, notes & tasks, progress analytics, PDF export, and offline-first Room + Firebase Cloud Firestore sync.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

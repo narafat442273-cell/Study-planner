@@ -1,0 +1,169 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Student profile, education level, goals, and personalization settings.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string" },
+        "educationLevel": { "type": "string" },
+        "categoryDetail": { "type": "string" },
+        "photoUri": { "type": "string" },
+        "dailyGoalMinutes": { "type": "integer" },
+        "weeklyGoalMinutes": { "type": "integer" },
+        "personalGoalNote": { "type": "string" },
+        "language": { "type": "string", "enum": ["bn", "en"] },
+        "themeMode": { "type": "string", "enum": ["system", "light", "dark"] },
+        "accentTheme": { "type": "string", "enum": ["indigo", "emerald", "amber", "rose"] },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Server timestamp via FieldValue.serverTimestamp()" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Server timestamp via FieldValue.serverTimestamp()" }
+      },
+      "required": ["userId", "displayName", "email", "educationLevel", "categoryDetail", "photoUri", "dailyGoalMinutes", "weeklyGoalMinutes", "personalGoalNote", "language", "themeMode", "accentTheme", "createdAt", "updatedAt"]
+    },
+    "Subject": {
+      "title": "Subject",
+      "description": "Academic subject with color, chapters, priority, progress, and exam date.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "colorHex": { "type": "integer" },
+        "priority": { "type": "string", "enum": ["high", "medium", "low"] },
+        "chapters": { "type": "array" },
+        "completedChapters": { "type": "array" },
+        "examDateMillis": { "type": "integer" },
+        "progressPercent": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "name", "colorHex", "priority", "chapters", "completedChapters", "examDateMillis", "progressPercent", "createdAt", "updatedAt"]
+    },
+    "StudyRoutine": {
+      "title": "StudyRoutine",
+      "description": "Scheduled study routine session with repeat pattern, duration, break time, and sort order.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "subjectId": { "type": "string" },
+        "subjectName": { "type": "string" },
+        "colorHex": { "type": "integer" },
+        "dateMillis": { "type": "integer" },
+        "startTimeMinutes": { "type": "integer" },
+        "endTimeMinutes": { "type": "integer" },
+        "durationMinutes": { "type": "integer" },
+        "breakMinutes": { "type": "integer" },
+        "repeatMode": { "type": "string", "enum": ["once", "daily", "weekly", "custom"] },
+        "repeatDays": { "type": "array" },
+        "notes": { "type": "string" },
+        "sortOrder": { "type": "integer" },
+        "isCompleted": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "subjectId", "subjectName", "colorHex", "dateMillis", "startTimeMinutes", "endTimeMinutes", "durationMinutes", "breakMinutes", "repeatMode", "repeatDays", "notes", "sortOrder", "isCompleted", "createdAt", "updatedAt"]
+    },
+    "StudyTask": {
+      "title": "StudyTask",
+      "description": "Assignment, homework, chapter task, or revision task with deadline.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "subjectId": { "type": "string" },
+        "subjectName": { "type": "string" },
+        "chapterName": { "type": "string" },
+        "title": { "type": "string" },
+        "taskType": { "type": "string", "enum": ["homework", "assignment", "chapter_task", "revision"] },
+        "deadlineMillis": { "type": "integer" },
+        "isCompleted": { "type": "boolean" },
+        "priority": { "type": "string", "enum": ["high", "medium", "low"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "subjectId", "subjectName", "chapterName", "title", "taskType", "deadlineMillis", "isCompleted", "priority", "createdAt", "updatedAt"]
+    },
+    "StudyNote": {
+      "title": "StudyNote",
+      "description": "Student study note optionally linked to a subject.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "subjectId": { "type": "string" },
+        "subjectName": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "isPinned": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "subjectId", "subjectName", "title", "content", "isPinned", "createdAt", "updatedAt"]
+    },
+    "ExamSchedule": {
+      "title": "ExamSchedule",
+      "description": "Exam countdown, preparation progress, and mock test schedule.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "subjectId": { "type": "string" },
+        "subjectName": { "type": "string" },
+        "title": { "type": "string" },
+        "examType": { "type": "string", "enum": ["board", "semester", "mock_test", "class_test", "admission"] },
+        "examDateMillis": { "type": "integer" },
+        "syllabusNotes": { "type": "string" },
+        "preparationPercent": { "type": "integer" },
+        "mockScorePercent": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "subjectId", "subjectName", "title", "examType", "examDateMillis", "syllabusNotes", "preparationPercent", "mockScorePercent", "createdAt", "updatedAt"]
+    },
+    "FocusSession": {
+      "title": "FocusSession",
+      "description": "Completed Pomodoro or custom study timer session for daily focus time tracking.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "subjectId": { "type": "string" },
+        "subjectName": { "type": "string" },
+        "durationMinutes": { "type": "integer" },
+        "mode": { "type": "string", "enum": ["pomodoro", "short_break", "long_break", "custom"] },
+        "dateKey": { "type": "string" },
+        "completedAtMillis": { "type": "integer" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "subjectId", "subjectName", "durationMinutes", "mode", "dateKey", "completedAtMillis", "createdAt", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Authenticated user's profile and study goals."
+    },
+    "/users/{userId}/subjects/{subjectId}": {
+      "schema": { "$ref": "#/entities/Subject" },
+      "description": "User's subjects and chapter completion."
+    },
+    "/users/{userId}/routines/{routineId}": {
+      "schema": { "$ref": "#/entities/StudyRoutine" },
+      "description": "User's scheduled study routines."
+    },
+    "/users/{userId}/tasks/{taskId}": {
+      "schema": { "$ref": "#/entities/StudyTask" },
+      "description": "User's assignments, homework, and chapter tasks."
+    },
+    "/users/{userId}/notes/{noteId}": {
+      "schema": { "$ref": "#/entities/StudyNote" },
+      "description": "User's study notes."
+    },
+    "/users/{userId}/exams/{examId}": {
+      "schema": { "$ref": "#/entities/ExamSchedule" },
+      "description": "User's exam schedule and mock tests."
+    },
+    "/users/{userId}/sessions/{sessionId}": {
+      "schema": { "$ref": "#/entities/FocusSession" },
+      "description": "User's completed focus timer sessions."
+    }
+  }
+}
